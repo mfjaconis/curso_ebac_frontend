@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <title>Formulário</title>
+</head>
+
+<body>
+    <header>
+        <h1>Formulário</h1>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#formulario"
+            aria-expanded="false" aria-controls="formulario" id="expandedForm">
+            Preencher formulário
+        </button>
+    </header>
+    <main class="collapse collapse-horizontal" id="formulario">
+        <h1>Cadastro de Usuário</h1>
+        <form id="userForm">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" placeholder="Seu nome">
+            </div>
+            <div class="form-group">
+                <label for="email">Endereço de email</label>
+                <input type="email" class="form-control" id="email" placeholder="Seu email">
+            </div>
+            <div class="form-group">
+                <label for="telephone">Telefone</label>
+                <input type="tel" class="form-control" id="telephone" placeholder="Seu telefone">
+            </div>
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </form>
+    </main>
+    <section>
+
+        <div id="result" class="mt-4"></div>
+    </section>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+<script>
+    document.getElementById('userForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const telephone = document.getElementById('telephone').value;
+
+        document.getElementById('userForm').reset()
+
+        const formulario = document.getElementById('formulario')
+        formulario.classList.remove('show')
+
+
+        const resultDiv = document.getElementById('result')
+
+        resultDiv.classList.add('result')
+
+        resultDiv.innerHTML = `
+                <h2>Dados do Formulário</h2>
+                <p><strong>Nome:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Telefone:</strong> ${telephone}</p>
+            `;
+    });
+    document.getElementById('expandedForm').addEventListener('click', function (event) {
+        event.preventDefault()
+
+        const resultDiv = document.getElementById('result')
+        resultDiv.classList.remove('result');
+        resultDiv.innerHTML = ''
+    })
+
+</script>
+
+</html>
